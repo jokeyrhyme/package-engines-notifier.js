@@ -1,6 +1,8 @@
 /* @flow */
 'use strict'
 
+var util = require('util')
+
 /* ::
 type EnginesErrorData = {
   current: string,
@@ -15,29 +17,33 @@ type EnginesNotifierOptions = {
     engines: { [id:string]: string }
   }
 }
+
+declare class EnginesError extends Error {
+  data: EnginesErrorData
+}
 */
 
-class EnginesError extends Error {
-  /* :: data : EnginesErrorData */
-  constructor (data /* : EnginesErrorData */) {
-    super('package.json engines mismatch')
-    this.data = data
-  }
+function EnginesError (data /* : EnginesErrorData */) {
+  // $FlowFixMe: ES5-style super() for compatibility with 0.12
+  Error.call(this, 'package.json engines mismatch')
+  this.data = data
+}
 
-  toString () {
-    const chalk = require('chalk')
+util.inherits(EnginesError, Error)
 
-    return [
-      chalk.blue(this.data.name),
-      chalk.reset('requires'),
-      chalk.blue(this.data.engine),
-      chalk.green(this.data.required),
-      chalk.reset('\ncurrent'),
-      chalk.blue(this.data.engine),
-      chalk.reset('version is'),
-      chalk.red(this.data.current)
-    ].join(' ')
-  }
+EnginesError.prototype.toString = function () {
+  var chalk = require('chalk')
+
+  return [
+    chalk.blue(this.data.name),
+    chalk.reset('requires'),
+    chalk.blue(this.data.engine),
+    chalk.green(this.data.required),
+    chalk.reset('\ncurrent'),
+    chalk.blue(this.data.engine),
+    chalk.reset('version is'),
+    chalk.red(this.data.current)
+  ].join(' ')
 }
 
 function enginesError (
@@ -47,10 +53,10 @@ function enginesError (
     return null
   }
   if (options.pkg.engines.node) {
-    const semver = require('semver')
+    var semver = require('semver')
 
     if (!semver.satisfies(process.version, options.pkg.engines.node)) {
-      const err = new EnginesError({
+      var err = new EnginesError({
         current: process.version,
         engine: 'node',
         name: options.pkg.name,
@@ -65,10 +71,10 @@ function enginesError (
 function enginesNotify (
   options /* : EnginesNotifierOptions */
 ) /* : EnginesError | null */ {
-  const err = enginesError(options)
+  var err = enginesError(options)
 
   if (err) {
-    const message = err.toString()
+    var message = err.toString()
 
     if (!process.stderr.isTTY || require('is-npm')) {
       // boxen-notify won't output, so do so explicitly here
@@ -76,8 +82,8 @@ function enginesNotify (
       console.error('\n' + message + '\n')
       /* eslint-enable no-console */
     } else {
-      const notify = require('boxen-notify').notify
-      notify({ message })
+      var notify = require('boxen-notify').notify
+      notify({ message: message })
     }
   }
 
@@ -85,6 +91,6 @@ function enginesNotify (
 }
 
 module.exports = {
-  enginesError,
-  enginesNotify
+  enginesError: enginesError,
+  enginesNotify: enginesNotify
 }
