@@ -1,18 +1,18 @@
 'use strict'
 
-const clearRequire = require('clear-require')
+var clearRequire = require('clear-require')
 
-const enginesNotify = require('../index.js').enginesNotify
+var enginesNotify = require('../index.js').enginesNotify
 
 // mock console.error
-let oldConsoleError = console.error
-afterEach(() => {
+var oldConsoleError = console.error
+afterEach(function () {
   console.error = oldConsoleError
 })
 
 // mock interactive terminal and non-`npm run`-environment
-let processEnvBefore = JSON.stringify(process.env)
-let isTTYBefore = process.stdout.isTTY
+var processEnvBefore = JSON.stringify(process.env)
+var isTTYBefore = process.stdout.isTTY
 beforeEach(function () {
   ['is-npm'].forEach(clearRequire)
   ;['npm_config_username', 'npm_package_name', 'npm_config_heading'].forEach(function (name) {
@@ -26,17 +26,17 @@ afterEach(function () {
   process.stdout.isTTY = isTTYBefore
 })
 
-const pkg = {
+var pkg = {
   name: 'my-package',
   engines: {
     node: '>=4'
   }
 }
 
-test('{ node: ">=4" vs "v0.12.0" }', () => {
+test('{ node: ">=4" vs "v0.12.0" }', function () {
   process.version = 'v0.12.0'
   console.error = jest.fn()
-  const enginesError = enginesNotify({ pkg })
+  var enginesError = enginesNotify({ pkg: pkg })
   expect(console.error).toHaveBeenCalledTimes(1)
   expect(enginesError).toBeInstanceOf(Error)
 })
