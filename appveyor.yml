@@ -1,0 +1,15 @@
+
+build: 'off'
+environment:
+  matrix:
+    - nodejs_version: '4'
+    - nodejs_version: '6'
+install:
+  - ps: 'Install-Product node $env:nodejs_version x64'
+  - npm install
+  - npm install --global flow-typed
+  - flow-typed install
+test_script:
+  - node --version
+  - npm --version
+  - npm test

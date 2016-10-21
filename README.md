@@ -1,4 +1,4 @@
-# package-engines-notifier [![npm](https://img.shields.io/npm/v/package-engines-notifier.svg?maxAge=2592000)](https://www.npmjs.com/package/package-engines-notifier)
+# package-engines-notifier [![npm](https://img.shields.io/npm/v/package-engines-notifier.svg?maxAge=2592000)](https://www.npmjs.com/package/package-engines-notifier) [![AppVeyor Status](https://ci.appveyor.com/api/projects/status/9whuayhq6gnvdyah?svg=true)](https://ci.appveyor.com/project/jokeyrhyme/package-engines-notifier-js) [![Travis CI Status](https://travis-ci.org/jokeyrhyme/package-engines-notifier.js.svg?branch=master)](https://travis-ci.org/jokeyrhyme/package-engines-notifier.js)
 
 warns users about incompatible Node.js versions per engines in package.json
 
