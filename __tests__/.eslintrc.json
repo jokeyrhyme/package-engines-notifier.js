@@ -6,6 +6,7 @@
     "jest": true
   },
   "rules": {
+    "no-console": 0,
     "node/no-unpublished-require": 0
   }
 }

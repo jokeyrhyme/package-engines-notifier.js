@@ -6,7 +6,7 @@ warns users about incompatible Node.js versions per engines in package.json
 ## Usage
 
 
-### `enginesNotify(options: EnginesNotifierOptions) => boolean`
+### `enginesNotify(options: EnginesNotifierOptions) => Error | null`
 
 
 ```flowtype
@@ -17,7 +17,9 @@ type EnginesNotifierOptions = {
 
 -   see upstream documentation for [PackageJson](https://docs.npmjs.com/files/package.json)
 
--   returns `true` if there is engine trouble
+-   if there is engine trouble, outputs a message using `console.error()`, and returns an `Error`
+
+-   otherwise, no output, and returns `null`
 
 
 ### Example
