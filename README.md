@@ -60,3 +60,6 @@ npm test
 -   [engine-check](https://www.npmjs.com/package/engine-check)
 
 -   [check-engines](https://github.com/kruppel/check-engines)
+
+-   [node-check](https://github.com/fnando/node-check)
+
