@@ -20,7 +20,7 @@
     "eslint-plugin-promise": "^3.3.0",
     "eslint-plugin-standard": "^2.0.1",
     "fixpack": "^2.3.1",
-    "flow-bin": "^0.33.0",
+    "flow-bin": "^0.34.0",
     "jest": "^16.0.2",
     "strip-ansi": "^3.0.1"
   },
