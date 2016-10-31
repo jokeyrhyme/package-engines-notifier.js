@@ -1,4 +1,4 @@
 exports[`test { node: ">=4" vs "v0.12.0" } 1`] = `
-"my-package requires node >=4 
+"my-package requires Node.js >=4 
 current node version is v0.12.0"
 `;
