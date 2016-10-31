@@ -11,6 +11,7 @@ afterEach(function () {
 // mock console.error
 var oldConsoleError = console.error
 afterEach(function () {
+  // $FlowFixMe: just ignore the mocking here
   console.error = oldConsoleError
 })
 
@@ -23,6 +24,7 @@ var pkg = {
 
 test('{ node: ">=4" vs "v0.12.0" }', function () {
   process.version = 'v0.12.0'
+  // $FlowFixMe: just ignore the mocking here
   console.error = jest.fn()
   var enginesError = enginesNotify({ pkg: pkg })
   expect(console.error).toHaveBeenCalledTimes(1)
@@ -31,6 +33,7 @@ test('{ node: ">=4" vs "v0.12.0" }', function () {
 
 test('{ node: ">=4" vs "v6.9.0" }', function () {
   process.version = 'v6.9.0'
+  // $FlowFixMe: just ignore the mocking here
   console.error = jest.fn()
   var enginesError = enginesNotify({ pkg: pkg })
   expect(console.error).not.toBeCalled()

@@ -3,6 +3,10 @@
 
 var util = require('util')
 
+var LABELS = {
+  'node': 'Node.js'
+}
+
 /* ::
 type EnginesErrorData = {
   current: string,
@@ -31,13 +35,14 @@ function EnginesError (data /* : EnginesErrorData */) {
 
 util.inherits(EnginesError, Error)
 
-EnginesError.prototype.toString = function () {
+// $FlowFixMe: ES5-style super() for compatibility with 0.12
+EnginesError.prototype.toString = function () /* : string */ {
   var chalk = require('chalk')
 
   return [
     chalk.blue(this.data.name),
     chalk.reset('requires'),
-    chalk.blue(this.data.engine),
+    chalk.blue(LABELS[this.data.engine] || this.data.engine),
     chalk.green(this.data.required),
     chalk.reset('\ncurrent'),
     chalk.blue(this.data.engine),

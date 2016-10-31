@@ -41,7 +41,8 @@
       "global": {
         "lines": 90
       }
-    }
+    },
+    "testRegex": "/__tests__/[^\\/]*\\.js$"
   },
   "keywords": [
     "engines",
@@ -60,7 +61,7 @@
   "scripts": {
     "eslint": "eslint --fix --cache .",
     "fixpack": "fixpack",
-    "flow_check": "flow check || exit 0",
+    "flow_check": "flow check",
     "jest": "jest",
     "posttest": "npm run eslint && npm run flow_check && npm run fixpack",
     "test": "npm run jest"
