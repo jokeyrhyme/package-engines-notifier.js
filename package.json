@@ -1,7 +1,7 @@
 {
   "name": "package-engines-notifier",
   "description": "warns users about incompatible Node.js versions per engines in package.json",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Ron Waldon <jokeyrhyme@gmail.com> (https://github.com/jokeyrhyme)",
   "bugs": {
     "url": "https://github.com/jokeyrhyme/package-engines-notifier.js/issues"
