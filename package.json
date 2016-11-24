@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "clear-require": "^1.0.1",
-    "eslint": "^3.10.0",
+    "eslint": "^3.10.2",
     "eslint-config-standard": "^6.2.0",
     "eslint-plugin-node": "^3.0.4",
     "eslint-plugin-promise": "^3.4.0",
