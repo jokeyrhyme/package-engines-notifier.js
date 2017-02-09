@@ -13,10 +13,8 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-4.8
-cache:
-  directories:
-    - node_modules
 install:
-  - npm install
-  - npm install --global flow-typed
   - flow-typed install
+  - npm install --global npm
+  - npm install --global yarn
+  - npm install
