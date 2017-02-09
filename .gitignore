@@ -27,7 +27,6 @@ coverage
 build/Release
 
 # Dependency directories
-flow-typed
 node_modules
 jspm_packages
 
