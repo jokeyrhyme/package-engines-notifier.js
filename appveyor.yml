@@ -6,7 +6,6 @@ environment:
     - nodejs_version: '7'
 install:
   - ps: 'Install-Product node $env:nodejs_version x64'
-  - flow-typed install
   - npm install --global npm-windows-upgrade
   - npm-windows-upgrade --no-spinner --npm-version latest
   - npm install --global yarn
