@@ -7,26 +7,16 @@ var LABELS = {
   'node': 'Node.js'
 }
 
+/* :: import type {
+  EnginesErrorData, EnginesNotifierOptions
+} from './types.js' */
+
 /* ::
-type EnginesErrorData = {
-  current: string,
-  engine: string,
-  name: string,
-  required: string
-}
-
-type EnginesNotifierOptions = {
-  pkg: {
-    [id:string]: any,
-    engines: { [id:string]: string }
-  }
-}
-
 declare class EnginesError extends Error {
-  data: EnginesErrorData
+  data: EnginesErrorData,
+  toString (): string
 }
 */
-
 function EnginesError (data /* : EnginesErrorData */) {
   // $FlowFixMe: ES5-style super() for compatibility with 0.12
   Error.call(this, 'package.json engines mismatch')
@@ -53,7 +43,7 @@ EnginesError.prototype.toString = function () /* : string */ {
 
 function enginesError (
   options /* : EnginesNotifierOptions */
-) /* : EnginesError | null */ {
+) /* : ?EnginesError */ {
   if (!options || !options.pkg || !options.pkg.engines) {
     return null
   }
@@ -65,7 +55,7 @@ function enginesError (
         current: process.version,
         engine: 'node',
         name: options.pkg.name,
-        required: options.pkg.engines.node
+        required: (options.pkg.engines || {}).node
       })
       return err
     }
@@ -75,7 +65,7 @@ function enginesError (
 
 function enginesNotify (
   options /* : EnginesNotifierOptions */
-) /* : EnginesError | null */ {
+) /* : ?EnginesError */ {
   var err = enginesError(options)
 
   if (err) {
