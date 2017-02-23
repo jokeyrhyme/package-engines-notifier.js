@@ -17,6 +17,11 @@ var pkg = {
   }
 }
 
+test('no engines', () => {
+  var err = enginesError({ pkg: { name: 'test' } })
+  expect(err).toBe(null)
+})
+
 test('{ node: ">=4" vs "v0.12.0" }', function () {
   process.version = 'v0.12.0'
   var err = enginesError({ pkg: pkg })
