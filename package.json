@@ -23,7 +23,7 @@
     "fixpack": "^2.3.1",
     "flow-bin": "^0.48.0",
     "jest": "^20.0.0",
-    "strip-ansi": "^3.0.1"
+    "strip-ansi": "^4.0.0"
   },
   "directories": {
     "test": "test"
